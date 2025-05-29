@@ -85,13 +85,15 @@ exports.deleteCourse = async (req, res) => {
     if (!course) return res.status(404).json({ message: "Course not found" });
 
     // Only creator can delete
-    if (course.creatorId.toString() !== creatorId) {
+    if (course.creatorId.toString() !== creatorId) 
+    {
       return res.status(403).json({ message: "Not authorized" });
     }
 
      await Course.findByIdAndDelete(req.params.id);
      res.status(200).json({ message: "Course deleted successfully" });
-  } catch (err) {
+  } 
+  catch (err) {
     res.status(500).json({ message: "Server Error", error: err.message });
   }
 };
