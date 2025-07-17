@@ -14,11 +14,13 @@ app.use("/api/users", userRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/packages", packageRoutes);
 
+app.use("/uploads", express.static("uploads"));
+
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("MongoDB connected");
     app.listen(process.env.PORT, () => {
-      console.log("Server running on port",5000);
+      console.log("Server running on port", process.env.PORT);
     });
   })
   .catch(err => console.log("MongoDB connection error:", err));
